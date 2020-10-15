@@ -1,4 +1,5 @@
 import { getRepository } from 'typeorm';
+import { hash } from 'bcryptjs';
 
 import User from '../models/Users';
 import AppError from '../errors/AppError';
@@ -8,7 +9,7 @@ interface IRequest {
   password: string;
 }
 
-// 2 pontos de carga intrísica
+// 3 pontos de carga intrísica
 class CreateUserService {
   public async execute({ email, password }: IRequest): Promise<User>{
     const usersRepository = getRepository(User);
@@ -19,7 +20,12 @@ class CreateUserService {
       throw new AppError('Email already registered', 400);
     }
 
-    const user = usersRepository.create({ email, password });
+    const hashedPassword = await hash(password, 8);
+
+    const user = usersRepository.create({
+      email,
+      password: hashedPassword,
+    });
 
     await usersRepository.save(user);
 
