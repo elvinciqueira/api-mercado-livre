@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 
 import AppError from '../../errors/AppError';
 
+// 3 pontos de carga intrísica
 export default async (request: Request, response: Response, next: NextFunction) => {
   try {
     const schema = Yup.object().shape({
