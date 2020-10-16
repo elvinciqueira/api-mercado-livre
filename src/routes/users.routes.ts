@@ -1,12 +1,12 @@
 import { Router } from 'express';
-import UserController from '../controllers/UsersController';
 
 import UsersController from '../controllers/UsersController';
+import validateUserCreate from '../middlewares/validators/UserStore';
 
 const usersController = new UsersController();
 
 const usersRouter = Router();
 
-usersRouter.post('/', usersController.create);
+usersRouter.post('/', validateUserCreate, usersController.create);
 
 export default usersRouter;
