@@ -1,7 +1,7 @@
 import {Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany, JoinColumn, CreateDateColumn, UpdateDateColumn} from "typeorm";
 
 @Entity('categories')
-export class Category {
+class Category {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -25,3 +25,5 @@ export class Category {
   @UpdateDateColumn()
   updated_at: Date;
 }
+
+export default Category;
