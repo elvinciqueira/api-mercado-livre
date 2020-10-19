@@ -5,7 +5,7 @@ import ListCategoriesService from '../services/ListCategoriesService';
 
 // 3 pontos de carga intrísica
 export default class CategoriesController {
-  public async index (request: Request, response: Response) {
+  public async index (request: Request, response: Response): Promise<Response> {
     const listCategories = new ListCategoriesService();
 
     const categories = await listCategories.execute();
@@ -13,7 +13,7 @@ export default class CategoriesController {
     return response.status(200).json(categories);
   }
 
-  public async create(request: Request, response: Response) {
+  public async create(request: Request, response: Response): Promise<Response> {
     const { name, parent_id } = request.body;
 
     const createCategory = new CreateCategoryService();

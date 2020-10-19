@@ -4,7 +4,7 @@ import CreateUserService from '../services/CreateUserServices';
 
 // 2 ponto de carga intrísica
 export default class UserController {
-  public async create(request: Request, response: Response) {
+  public async create(request: Request, response: Response): Promise<Response> {
     const { email, password } = request.body;
 
     const createUser = new CreateUserService();
