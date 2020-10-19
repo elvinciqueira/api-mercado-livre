@@ -9,6 +9,7 @@ interface IRequest {
   password: string;
 }
 
+// 3 pontos de carga intrísica
 class AuthenticateUserService {
   public async execute({ email, password }: IRequest): Promise<{ user: User }> {
     const usersRepository = getRepository(User);

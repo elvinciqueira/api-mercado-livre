@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import CreateCategoryService from '../services/CreateCategoryService';
 import ListCategoriesService from '../services/ListCategoriesService';
 
-// 2 pontos de carga intrísica
+// 3 pontos de carga intrísica
 export default class CategoriesController {
   public async index (request: Request, response: Response) {
     const listCategories = new ListCategoriesService();
