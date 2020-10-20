@@ -7,7 +7,7 @@ class ListProductsService {
     const productsRepository = getRepository(Products);
 
     const products = await productsRepository.find({
-      relations: ['category']
+      relations: ['category', 'images']
     });
 
     return products;

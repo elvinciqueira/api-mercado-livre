@@ -1,4 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express';
+import path from 'path';
 import 'express-async-errors';
 
 import './database/connection';
@@ -10,6 +11,7 @@ const app = express();
 
 app.use(express.json());
 app.use(routes);
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
 app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
   if (err instanceof AppError) {

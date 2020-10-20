@@ -1,6 +1,7 @@
 import {Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany, JoinColumn, CreateDateColumn, UpdateDateColumn} from "typeorm";
 
-import Category from './Category'
+import Category from './Category';
+import Image from './Image';
 
 interface CharacteristicDataType {
   name: string,
@@ -9,7 +10,7 @@ interface CharacteristicDataType {
 
 @Entity('products')
 class Product {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
   @Column()
@@ -30,6 +31,12 @@ class Product {
   @ManyToOne(() => Category, category => category.products)
   @JoinColumn({ name: 'category_id'})
   category: Category;
+
+  @OneToMany(() => Image, image => image.product, {
+    cascade: ['insert', 'update']
+  })
+  @JoinColumn({ name: 'product_id'})
+  images: Image[];
 
   @CreateDateColumn()
   created_at: Date;
