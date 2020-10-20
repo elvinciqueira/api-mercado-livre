@@ -5,14 +5,18 @@ import ListProductsService from '../services/ListProductsService';
 
 class ProductsController {
   public async index(request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
+
     const listProducts = new ListProductsService();
 
-    const products = await listProducts.execute();
+    const products = await listProducts.execute({ user_id });
 
     return response.status(200).json(products);
   }
 
   public async create (request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
+
     const {
       name,
       quantity,
@@ -28,7 +32,8 @@ class ProductsController {
       quantity,
       price,
       category_id,
-      characteristics
+      characteristics,
+      user_id
     });
 
     return response.status(200).json(product);

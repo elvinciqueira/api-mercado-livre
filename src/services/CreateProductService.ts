@@ -14,6 +14,7 @@ interface IRequest {
   quantity: number;
   price: number;
   category_id: number;
+  user_id: string;
   characteristics: CharacteristicDataType[];
 }
 
@@ -24,7 +25,8 @@ export default class CreateProductService {
     quantity,
     price,
     category_id,
-    characteristics
+    characteristics,
+    user_id
   }: IRequest): Promise<Product> {
     const productsRepository = getRepository(Product);
     const categoryRepository = getRepository(Category);
@@ -54,6 +56,7 @@ export default class CreateProductService {
       quantity,
       price,
       category_id,
+      user_id,
       characteristics
     });
 
