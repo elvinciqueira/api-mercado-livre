@@ -8,7 +8,7 @@ class SessionController {
 
     const authenticateUser = new AuthenticateUserService();
 
-    const { user, token } = await authenticateUser.execute({ email, password })
+    const { user, token } = await authenticateUser.execute({ email, password });
 
     return response.status(200).json({ user, token });
   }
