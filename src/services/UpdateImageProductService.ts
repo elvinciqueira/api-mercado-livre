@@ -9,12 +9,13 @@ interface IRequest {
   product_id: string;
 }
 
+// 4 de carga intrísica
 export default class UpdateImageProductService {
   public async execute({ product_id, images, user_id }: IRequest): Promise<Product | undefined> {
     const productsRepository = getRepository(Product);
     const usersRepository = getRepository(User);
 
-    const user = usersRepository.findOne(user_id);
+    const user = await usersRepository.findOne(user_id);
 
     if (!user) {
       throw new AppError('Only authenticated users can change image.', 403);
@@ -24,6 +25,10 @@ export default class UpdateImageProductService {
 
     if (!product) {
       throw new AppError('Product not found.', 400);
+    }
+
+    if (product.user_id != user_id) {
+      throw new AppError('You cannot change a product that dont belong to you', 403);
     }
 
     product.images = images;
