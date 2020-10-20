@@ -29,9 +29,9 @@ export default class CreateProductService {
     const productsRepository = getRepository(Product);
     const categoryRepository = getRepository(Category);
 
-    const productCategory = categoryRepository.findOne(category_id);
+    const productCategory = await categoryRepository.findOne(category_id);
 
-    if (productCategory) {
+    if (!productCategory) {
       throw new AppError('Category not found.', 401);
     }
 
@@ -43,6 +43,10 @@ export default class CreateProductService {
       }
 
       set.add(value.name.toLowerCase());
+    }
+
+    if (set.size < 3) {
+      throw new AppError('Must be at least 3 characteristics', 400);
     }
 
     const product = productsRepository.create({
