@@ -17,6 +17,7 @@ export default class ProductImageController {
 
     const product = await updateImage.execute({
       product_id,
+      user_id: request.user.id,
       images
     });
 
