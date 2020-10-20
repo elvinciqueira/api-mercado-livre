@@ -17,6 +17,7 @@ interface IRequest {
   characteristics: CharacteristicDataType[];
 }
 
+// 5 pontos de carga intrísica
 export default class CreateProductService {
   public async execute({
     name,
@@ -32,6 +33,16 @@ export default class CreateProductService {
 
     if (productCategory) {
       throw new AppError('Category not found.', 401);
+    }
+
+    const set = new Set();
+
+    for (let value of characteristics) {
+      if (set.has(value.name)) {
+        throw new AppError(`Characteristic ${value.name} cannot be the same`, 400);
+      }
+
+      set.add(value.name.toLowerCase());
     }
 
     const product = productsRepository.create({
