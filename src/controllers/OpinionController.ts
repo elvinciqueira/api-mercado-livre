@@ -8,8 +8,6 @@ export default class OpinionController {
     const { id } = request.params;
     const { grade, title, description } = request.body;
 
-    console.log('request.body', request.body);
-
     const createOpinion = new CreateOpinionService();
 
     const opinion = await createOpinion.execute({

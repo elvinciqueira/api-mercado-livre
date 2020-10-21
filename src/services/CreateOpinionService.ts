@@ -13,6 +13,7 @@ interface IRequest {
   product_id: number;
 }
 
+// 6 pontos de carga intrísica
 export default class CreateOpinionService {
   public async execute({
     description,
