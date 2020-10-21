@@ -18,7 +18,7 @@ interface IRequest {
   characteristics: CharacteristicDataType[];
 }
 
-// 5 pontos de carga intrísica
+// 7 pontos de carga intrísica
 export default class CreateProductService {
   public async execute({
     name,

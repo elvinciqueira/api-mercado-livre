@@ -16,7 +16,7 @@ interface IResponse {
   token: string;
 }
 
-// 3 pontos de carga intrísica
+// 4 pontos de carga intrísica
 class AuthenticateUserService {
   public async execute({ email, password }: IRequest): Promise<IResponse> {
     const usersRepository = getRepository(User);

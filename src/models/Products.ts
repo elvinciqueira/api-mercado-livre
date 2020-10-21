@@ -2,6 +2,7 @@ import {Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany, JoinColumn
 
 import Category from './Category';
 import Image from './Image';
+import Opinion from "./Opinion";
 import User from "./Users";
 
 interface CharacteristicDataType {
@@ -45,6 +46,10 @@ class Product {
   @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })
   user: User;
+
+  @OneToMany(() => Opinion, opinion => opinion.product)
+  @JoinColumn({ name: 'product_id'})
+  opinion: Opinion[]
 
   @CreateDateColumn()
   created_at: Date;

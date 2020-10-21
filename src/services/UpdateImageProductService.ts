@@ -9,7 +9,7 @@ interface IRequest {
   product_id: string;
 }
 
-// 4 de carga intrísica
+// 6 de carga intrísica
 export default class UpdateImageProductService {
   public async execute({ product_id, images, user_id }: IRequest): Promise<Product | undefined> {
     const productsRepository = getRepository(Product);
