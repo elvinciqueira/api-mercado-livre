@@ -9,7 +9,7 @@ export default async (request: Request, response: Response, next: NextFunction) 
     const schema = Yup.object().shape({
       grade: Yup.number().min(1).max(5).required(),
       title: Yup.string().required(),
-      description: Yup.string().min(500).required(),
+      description: Yup.string().max(500).required(),
     });
 
     await schema.validate(request.body, {

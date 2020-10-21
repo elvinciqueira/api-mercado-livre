@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 
 import CreateProductService from '../services/CreateProductService';
 import ListProductsService from '../services/ListProductsService';
+import productView from '../views/products_views';
 
 class ProductsController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -11,7 +12,7 @@ class ProductsController {
 
     const products = await listProducts.execute({ user_id });
 
-    return response.status(200).json(products);
+    return response.status(200).json(productView.renderMany(products));
   }
 
   public async create (request: Request, response: Response): Promise<Response> {
