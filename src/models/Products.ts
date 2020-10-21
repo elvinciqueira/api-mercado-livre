@@ -4,6 +4,7 @@ import Category from './Category';
 import Image from './Image';
 import Opinion from "./Opinion";
 import User from "./Users";
+import Question from './Question';
 
 interface CharacteristicDataType {
   name: string,
@@ -49,7 +50,11 @@ class Product {
 
   @OneToMany(() => Opinion, opinion => opinion.product)
   @JoinColumn({ name: 'product_id'})
-  opinion: Opinion[]
+  opinion: Opinion[];
+
+  @OneToMany(() => Question, question => question.product)
+  @JoinColumn({ name: 'product_id'})
+  question: Question[];
 
   @CreateDateColumn()
   created_at: Date;

@@ -12,7 +12,7 @@ class ListProductsService {
 
     const products = await productsRepository.find({
       where: { user_id },
-      relations: ['category', 'images', 'opinion']
+      relations: ['category', 'images', 'opinion', 'question']
     });
 
     return products;
